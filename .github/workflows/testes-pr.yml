@@ -1,0 +1,41 @@
+name: Run React Tests and Send Alert
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test -- --watchAll=false
+
+      - name: Alerta no Discord se os testes falharem
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content": "❌ *Erro nos testes do projeto React (atividade somativa 2).* Verifique a falha no GitHub Actions."}' \
+          https://discord.com/api/webhooks/SEU/WEBHOOK/AQUI
+
+      - name: Alerta no Discord se os testes passarem
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{"content": "✅ *Testes executados com sucesso no projeto React (atividade somativa 2).* Tudo certo!"}' \
+          https://discord.com/api/webhooks/SEU/WEBHOOK/AQUI

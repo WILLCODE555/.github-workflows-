@@ -27,7 +27,7 @@ jobs:
         curl -H "Content-Type: application/json" \
         -X POST \
         -d '{"content": "❌ *Erro nos testes do projeto React.* Verifique a falha no GitHub Actions."}' \
-        https://discord.com/api/webhooks/1363221864347996291/NfCAUFOACOAQ-LtdYP0bhjX6DaV0vSP5y7ILrCDPs4vf99UZEFCWnahropalgljvqe5Y
+        https://discord.com/api/webhooks/1363221903296434420/wsWTXRV_7TfyxpulB-L5kQfh7DX5T4zf1eFtbFdJPtW1Qhr7wiSN1lQ3GxZUzHXFokpw
 
     - name: Alerta no Discord se os testes passarem
       if: success()
@@ -35,4 +35,4 @@ jobs:
         curl -H "Content-Type: application/json" \
         -X POST \
         -d '{"content": "✅ *Testes executados com sucesso no projeto React.* Tudo certo!"}' \
-        https://discord.com/api/webhooks/136322186
+        https://discord.com/api/webhooks/1363221903296434420/wsWTXRV_7TfyxpulB-L5kQfh7DX5T4zf1eFtbFdJPtW1Qhr7wiSN1lQ3GxZUzHXFokpw
